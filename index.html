@@ -1,283 +1,288 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Welcome</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
 
-<style>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Poppins',sans-serif;
-}
+        body {
 
-body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
 
-display:flex;
-justify-content:center;
-align-items:center;
-height:100vh;
-overflow:hidden;
+            background: linear-gradient(-45deg, #020617, #0f172a, #1e3a8a, #2563eb, #38bdf8);
+            background-size: 400% 400%;
+            animation: bg 12s ease infinite;
 
-background:linear-gradient(-45deg,#020617,#0f172a,#1e3a8a,#2563eb,#38bdf8);
-background-size:400% 400%;
-animation:bg 12s ease infinite;
+            transition: .8s;
 
-transition:.8s;
+        }
 
-}
+        @keyframes bg {
 
-@keyframes bg{
+            0% {
+                background-position: 0% 50%;
+            }
 
-0%{background-position:0% 50%;}
+            50% {
+                background-position: 100% 50%;
+            }
 
-50%{background-position:100% 50%;}
+            100% {
+                background-position: 0% 50%;
+            }
 
-100%{background-position:0% 50%;}
+        }
 
-}
+        .circle {
 
-.circle{
+            position: absolute;
 
-position:absolute;
+            border-radius: 50%;
 
-border-radius:50%;
+            background: rgba(255, 255, 255, .08);
 
-background:rgba(255,255,255,.08);
+            animation: float 10s ease-in-out infinite;
 
-animation:float 10s ease-in-out infinite;
+        }
 
-}
+        .circle:nth-child(1) {
 
-.circle:nth-child(1){
+            width: 180px;
+            height: 180px;
+            left: 5%;
+            top: 10%;
 
-width:180px;
-height:180px;
-left:5%;
-top:10%;
+        }
 
-}
+        .circle:nth-child(2) {
 
-.circle:nth-child(2){
+            width: 250px;
+            height: 250px;
+            right: 8%;
+            bottom: 8%;
 
-width:250px;
-height:250px;
-right:8%;
-bottom:8%;
+            animation-duration: 14s;
 
-animation-duration:14s;
+        }
 
-}
+        .circle:nth-child(3) {
 
-.circle:nth-child(3){
+            width: 120px;
+            height: 120px;
+            left: 25%;
+            bottom: 15%;
 
-width:120px;
-height:120px;
-left:25%;
-bottom:15%;
+        }
 
-}
+        @keyframes float {
 
-@keyframes float{
+            50% {
 
-50%{
+                transform: translateY(-35px);
 
-transform:translateY(-35px);
+            }
 
-}
+        }
 
-}
+        .card {
 
-.card{
+            position: relative;
 
-position:relative;
+            padding: 70px 80px;
 
-padding:70px 80px;
+            text-align: center;
 
-text-align:center;
+            background: rgba(255, 255, 255, .08);
 
-background:rgba(255,255,255,.08);
+            border: 1px solid rgba(255, 255, 255, .15);
 
-border:1px solid rgba(255,255,255,.15);
+            backdrop-filter: blur(20px);
 
-backdrop-filter:blur(20px);
+            border-radius: 25px;
 
-border-radius:25px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, .35);
 
-box-shadow:0 20px 40px rgba(0,0,0,.35);
+            animation: show 1s ease;
 
-animation:show 1s ease;
+            overflow: hidden;
 
-overflow:hidden;
+        }
 
-}
+        .card::before {
 
-.card::before{
+            content: "";
 
-content:"";
+            position: absolute;
 
-position:absolute;
+            width: 250%;
 
-width:250%;
+            height: 250%;
 
-height:250%;
+            background: linear-gradient(45deg,
+                    transparent,
+                    rgba(255, 255, 255, .12),
+                    transparent);
 
-background:linear-gradient(
-45deg,
-transparent,
-rgba(255,255,255,.12),
-transparent);
+            top: -80%;
 
-top:-80%;
+            left: -80%;
 
-left:-80%;
+            animation: shine 8s linear infinite;
 
-animation:shine 8s linear infinite;
+        }
 
-}
+        @keyframes shine {
 
-@keyframes shine{
+            100% {
 
-100%{
+                transform: translateX(100%) rotate(45deg);
 
-transform:translateX(100%) rotate(45deg);
+            }
 
-}
+        }
 
-}
+        @keyframes show {
 
-@keyframes show{
+            from {
 
-from{
+                opacity: 0;
 
-opacity:0;
+                transform: translateY(40px);
 
-transform:translateY(40px);
+            }
 
-}
+            to {
 
-to{
+                opacity: 1;
 
-opacity:1;
+                transform: translateY(0);
 
-transform:translateY(0);
+            }
 
-}
+        }
 
-}
+        h1 {
 
-h1{
+            font-size: 60px;
 
-font-size:60px;
+            font-weight: 800;
 
-font-weight:800;
+            color: white;
 
-color:white;
+            margin-bottom: 50px;
 
-margin-bottom:50px;
+        }
 
-}
+        h1 span {
 
-h1 span{
+            color: #38bdf8;
 
-color:#38bdf8;
+        }
 
-}
+        .btn {
 
-.btn{
+            display: inline-block;
 
-display:inline-block;
+            padding: 18px 45px;
 
-padding:18px 45px;
+            border-radius: 50px;
 
-border-radius:50px;
+            text-decoration: none;
 
-text-decoration:none;
+            font-size: 18px;
 
-font-size:18px;
+            font-weight: 600;
 
-font-weight:600;
+            background: #38bdf8;
 
-background:#38bdf8;
+            color: #081221;
 
-color:#081221;
+            transition: .4s;
 
-transition:.4s;
+        }
 
-}
+        .btn:hover {
 
-.btn:hover{
+            transform: translateY(-8px);
 
-transform:translateY(-8px);
+            box-shadow: 0 15px 35px rgba(56, 189, 248, .45);
 
-box-shadow:0 15px 35px rgba(56,189,248,.45);
+        }
 
-}
+        @media(max-width:768px) {
 
-@media(max-width:768px){
+            .card {
 
-.card{
+                padding: 40px;
 
-padding:40px;
+                width: 90%;
 
-width:90%;
+            }
 
-}
+            h1 {
 
-h1{
+                font-size: 38px;
 
-font-size:38px;
+            }
 
-}
-
-}
-
-</style>
+        }
+    </style>
 
 </head>
 
 <body>
 
-<div class="circle"></div>
-<div class="circle"></div>
-<div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
 
-<div class="card">
+    <div class="card">
 
-<h1>
-Welcome to <span>My Portfolio</span>
-</h1>
+        <h1>
+            Welcome to <span>My Portfolio</span>
+        </h1>
 
-<a href="index.html" class="btn" id="enterBtn">
-Enter My Journey →
-</a>
+        <a href="portfolio.html" class="btn" id="enterBtn">
+            Enter My Journey →
+        </a>
 
-</div>
+    </div>
 
-<script>
+    <script>
 
-document.getElementById("enterBtn").addEventListener("click",function(e){
+        document.getElementById("enterBtn").addEventListener("click", function (e) {
 
-e.preventDefault();
+            e.preventDefault();
 
-document.body.style.opacity="0";
+            document.body.style.opacity = "0";
 
-document.body.style.transform="scale(1.05)";
+            document.body.style.transform = "scale(1.05)";
 
-setTimeout(()=>{
+            setTimeout(() => {
 
-window.location.href="index.html";
+                window.location.href = "portfolio.html";
+            }, 700);
 
-},700);
+        });
 
-});
-
-</script>
+    </script>
 
 </body>
+
 </html>
