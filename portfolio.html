@@ -44,6 +44,7 @@
             --toggle-border: rgba(255, 255, 255, 0.15);
             --badge-bg: rgba(56, 189, 248, 0.12);
             --badge-text: #38bdf8;
+            --bg-secondary-layer: rgba(13, 27, 42, 0.62);
         }
 
         [data-theme="light"] {
@@ -74,6 +75,7 @@
             --toggle-border: rgba(15, 23, 42, 0.12);
             --badge-bg: rgba(2, 132, 199, 0.1);
             --badge-text: #0284c7;
+            --bg-secondary-layer: rgba(241, 245, 249, 0.72);
         }
 
         /* ================= BASE STYLES ================= */
@@ -206,6 +208,107 @@
             display: none;
         }
 
+        /* ================= BACKGROUND ANIMATION ================= */
+        .bg-animation-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .bg-glow-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            pointer-events: none;
+            will-change: transform;
+            opacity: 0.65;
+            transition: background 0.5s ease, opacity 0.5s ease;
+        }
+
+        .orb-1 {
+            width: 520px;
+            height: 520px;
+            background: radial-gradient(circle, rgba(56, 189, 248, 0.12) 0%, rgba(56, 189, 248, 0) 70%);
+            top: -8%;
+            left: -6%;
+            animation: floatOrb1 26s ease-in-out infinite alternate;
+        }
+
+        .orb-2 {
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.09) 0%, rgba(99, 102, 241, 0) 70%);
+            bottom: -8%;
+            right: -6%;
+            animation: floatOrb2 30s ease-in-out infinite alternate;
+        }
+
+        .orb-3 {
+            width: 440px;
+            height: 440px;
+            background: radial-gradient(circle, rgba(14, 165, 233, 0.07) 0%, rgba(14, 165, 233, 0) 70%);
+            top: 42%;
+            left: 36%;
+            animation: floatOrb3 22s ease-in-out infinite alternate;
+        }
+
+        [data-theme="light"] .orb-1 {
+            background: radial-gradient(circle, rgba(2, 132, 199, 0.05) 0%, rgba(2, 132, 199, 0) 70%);
+        }
+
+        [data-theme="light"] .orb-2 {
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.035) 0%, rgba(99, 102, 241, 0) 70%);
+        }
+
+        [data-theme="light"] .orb-3 {
+            background: radial-gradient(circle, rgba(14, 165, 233, 0.035) 0%, rgba(14, 165, 233, 0) 70%);
+        }
+
+        .bg-grid-overlay {
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+            background-size: 38px 38px;
+            pointer-events: none;
+            opacity: 0.5;
+        }
+
+        [data-theme="light"] .bg-grid-overlay {
+            background-image: radial-gradient(rgba(15, 23, 42, 0.03) 1px, transparent 1px);
+        }
+
+        #bg-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        @keyframes floatOrb1 {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(65px, 45px) scale(1.08); }
+            100% { transform: translate(-30px, 80px) scale(0.96); }
+        }
+
+        @keyframes floatOrb2 {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-70px, -35px) scale(1.06); }
+            100% { transform: translate(30px, -65px) scale(0.94); }
+        }
+
+        @keyframes floatOrb3 {
+            0% { transform: translate(0, 0) scale(0.96); }
+            50% { transform: translate(45px, -45px) scale(1.1); }
+            100% { transform: translate(-35px, 25px) scale(1); }
+        }
+
         /* ================= HERO SECTION ================= */
         .hero {
             min-height: 100vh;
@@ -213,7 +316,9 @@
             justify-content: space-between;
             align-items: center;
             padding: 130px 8% 70px;
-            background: var(--bg-primary);
+            background: transparent;
+            position: relative;
+            z-index: 1;
             transition: background 0.4s ease;
         }
 
@@ -351,11 +456,17 @@
         /* ================= ABOUT SECTION ================= */
         .about {
             padding: 110px 10%;
-            background: var(--bg-secondary);
+            background: var(--bg-secondary-layer);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
             display: flex;
             justify-content: center;
             align-items: center;
-            transition: background 0.4s ease;
+            position: relative;
+            z-index: 1;
+            border-top: 1px solid var(--border-subtle);
+            border-bottom: 1px solid var(--border-subtle);
+            transition: background 0.4s ease, border-color 0.4s ease;
         }
 
         .about-content {
@@ -440,8 +551,9 @@
         /* ================= SKILLS SECTION ================= */
         .skills-section {
             padding: 110px 8%;
-            background: var(--bg-primary);
+            background: transparent;
             position: relative;
+            z-index: 1;
             overflow: hidden;
             transition: background 0.4s ease;
         }
@@ -588,9 +700,14 @@
         /* ================= INTERNSHIP SECTION ================= */
         .internship-section {
             padding: 110px 8%;
-            background: var(--bg-secondary);
+            background: var(--bg-secondary-layer);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
             position: relative;
-            transition: background 0.4s ease;
+            z-index: 1;
+            border-top: 1px solid var(--border-subtle);
+            border-bottom: 1px solid var(--border-subtle);
+            transition: background 0.4s ease, border-color 0.4s ease;
         }
 
         .internship-title {
@@ -745,8 +862,9 @@
         /* ================= PROJECTS SECTION ================= */
         .projects-section {
             padding: 110px 8%;
-            background: var(--bg-primary);
+            background: transparent;
             position: relative;
+            z-index: 1;
             transition: background 0.4s ease;
         }
 
@@ -964,9 +1082,14 @@
         /* ================= CONTACT & FOOTER ================= */
         .contact-section {
             padding: 100px 8% 60px;
-            background: var(--bg-secondary);
+            background: var(--bg-secondary-layer);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
             text-align: center;
-            transition: background 0.4s ease;
+            position: relative;
+            z-index: 1;
+            border-top: 1px solid var(--border-subtle);
+            transition: background 0.4s ease, border-color 0.4s ease;
         }
 
         .contact-title span {
@@ -1150,6 +1273,15 @@
 </head>
 
 <body>
+
+    <!-- Ambient Subtle Background Animation -->
+    <div class="bg-animation-container" aria-hidden="true">
+        <div class="bg-glow-orb orb-1"></div>
+        <div class="bg-glow-orb orb-2"></div>
+        <div class="bg-glow-orb orb-3"></div>
+        <div class="bg-grid-overlay"></div>
+        <canvas id="bg-canvas"></canvas>
+    </div>
 
     <!-- ================= NAVBAR ================= -->
     <header>
@@ -1656,6 +1788,185 @@
             htmlElement.setAttribute('data-theme', targetTheme);
             localStorage.setItem('portfolio-theme', targetTheme);
         });
+    </script>
+
+    <!-- ================= AMBIENT PARTICLE NETWORK SCRIPT ================= -->
+    <script>
+        (function () {
+            const canvas = document.getElementById('bg-canvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            let width = 0;
+            let height = 0;
+            let particles = [];
+            let animationFrameId = null;
+
+            const mouse = { x: null, y: null, radius: 120 };
+
+            window.addEventListener('mousemove', (e) => {
+                mouse.x = e.clientX;
+                mouse.y = e.clientY;
+            });
+
+            window.addEventListener('mouseleave', () => {
+                mouse.x = null;
+                mouse.y = null;
+            });
+
+            function getThemeColors() {
+                const isDark = document.documentElement.getAttribute('data-theme') !== 'light';
+                return {
+                    particleR: isDark ? 56 : 2,
+                    particleG: isDark ? 189 : 132,
+                    particleB: isDark ? 248 : 199,
+                    particleAlpha: isDark ? 0.28 : 0.2,
+                    lineR: isDark ? 56 : 2,
+                    lineG: isDark ? 189 : 132,
+                    lineB: isDark ? 248 : 199,
+                    lineMaxAlpha: isDark ? 0.11 : 0.07
+                };
+            }
+
+            let themeColors = getThemeColors();
+
+            const observer = new MutationObserver(() => {
+                themeColors = getThemeColors();
+            });
+            observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+
+            function resize() {
+                const dpr = Math.min(window.devicePixelRatio || 1, 2);
+                width = window.innerWidth;
+                height = window.innerHeight;
+                canvas.width = width * dpr;
+                canvas.height = height * dpr;
+                ctx.scale(dpr, dpr);
+                initParticles();
+            }
+
+            class Particle {
+                constructor() {
+                    this.reset(true);
+                }
+
+                reset(initial = false) {
+                    this.x = Math.random() * width;
+                    this.y = initial ? Math.random() * height : (Math.random() < 0.5 ? 0 : height);
+                    this.vx = (Math.random() - 0.5) * 0.3;
+                    this.vy = (Math.random() - 0.5) * 0.3;
+                    this.radius = Math.random() * 1.3 + 0.9;
+                    this.baseAlpha = Math.random() * 0.15 + 0.12;
+                    this.pulseSpeed = Math.random() * 0.015 + 0.008;
+                    this.pulseAngle = Math.random() * Math.PI * 2;
+                }
+
+                update() {
+                    this.x += this.vx;
+                    this.y += this.vy;
+                    this.pulseAngle += this.pulseSpeed;
+
+                    if (this.x < -20) this.x = width + 20;
+                    if (this.x > width + 20) this.x = -20;
+                    if (this.y < -20) this.y = height + 20;
+                    if (this.y > height + 20) this.y = -20;
+
+                    if (mouse.x !== null && mouse.y !== null) {
+                        const dx = mouse.x - this.x;
+                        const dy = mouse.y - this.y;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+                        if (dist < mouse.radius && dist > 0) {
+                            const force = (1 - dist / mouse.radius) * 0.35;
+                            this.x -= (dx / dist) * force;
+                            this.y -= (dy / dist) * force;
+                        }
+                    }
+                }
+
+                draw() {
+                    const currentAlpha = this.baseAlpha + Math.sin(this.pulseAngle) * 0.06;
+                    const alpha = Math.max(0.04, Math.min(0.35, currentAlpha * (themeColors.particleAlpha / 0.28)));
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(${themeColors.particleR}, ${themeColors.particleG}, ${themeColors.particleB}, ${alpha})`;
+                    ctx.fill();
+                }
+            }
+
+            function initParticles() {
+                const count = Math.floor(Math.min(50, Math.max(20, (width * height) / 24000)));
+                particles = [];
+                for (let i = 0; i < count; i++) {
+                    particles.push(new Particle());
+                }
+            }
+
+            function drawLines() {
+                const maxDist = 115;
+                const pLen = particles.length;
+                for (let i = 0; i < pLen; i++) {
+                    for (let j = i + 1; j < pLen; j++) {
+                        const dx = particles[i].x - particles[j].x;
+                        const dy = particles[i].y - particles[j].y;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+
+                        if (dist < maxDist) {
+                            const lineAlpha = (1 - dist / maxDist) * themeColors.lineMaxAlpha;
+                            ctx.beginPath();
+                            ctx.moveTo(particles[i].x, particles[i].y);
+                            ctx.lineTo(particles[j].x, particles[j].y);
+                            ctx.strokeStyle = `rgba(${themeColors.lineR}, ${themeColors.lineG}, ${themeColors.lineB}, ${lineAlpha})`;
+                            ctx.lineWidth = 0.75;
+                            ctx.stroke();
+                        }
+                    }
+
+                    if (mouse.x !== null && mouse.y !== null) {
+                        const dx = mouse.x - particles[i].x;
+                        const dy = mouse.y - particles[i].y;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+                        if (dist < mouse.radius) {
+                            const mouseLineAlpha = (1 - dist / mouse.radius) * (themeColors.lineMaxAlpha * 1.1);
+                            ctx.beginPath();
+                            ctx.moveTo(particles[i].x, particles[i].y);
+                            ctx.lineTo(mouse.x, mouse.y);
+                            ctx.strokeStyle = `rgba(${themeColors.lineR}, ${themeColors.lineG}, ${themeColors.lineB}, ${mouseLineAlpha})`;
+                            ctx.lineWidth = 0.8;
+                            ctx.stroke();
+                        }
+                    }
+                }
+            }
+
+            function animate() {
+                ctx.clearRect(0, 0, width, height);
+
+                for (let i = 0; i < particles.length; i++) {
+                    particles[i].update();
+                    particles[i].draw();
+                }
+
+                drawLines();
+
+                animationFrameId = requestAnimationFrame(animate);
+            }
+
+            let resizeTimeout;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimeout);
+                resizeTimeout = setTimeout(resize, 150);
+            });
+
+            document.addEventListener('visibilitychange', () => {
+                if (document.hidden) {
+                    cancelAnimationFrame(animationFrameId);
+                } else {
+                    animationFrameId = requestAnimationFrame(animate);
+                }
+            });
+
+            resize();
+            animate();
+        })();
     </script>
 
 </body>

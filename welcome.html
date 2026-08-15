@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome</title>
+    <title>Welcome | Aswitha's Portfolio</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
@@ -18,229 +18,215 @@
         }
 
         body {
-
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             overflow: hidden;
-
-            background: linear-gradient(-45deg, #020617, #0f172a, #1e3a8a, #2563eb, #38bdf8);
-            background-size: 400% 400%;
-            animation: bg 12s ease infinite;
-
-            transition: .8s;
-
-        }
-
-        @keyframes bg {
-
-            0% {
-                background-position: 0% 50%;
-            }
-
-            50% {
-                background-position: 100% 50%;
-            }
-
-            100% {
-                background-position: 0% 50%;
-            }
-
-        }
-
-        .circle {
-
-            position: absolute;
-
-            border-radius: 50%;
-
-            background: rgba(255, 255, 255, .08);
-
-            animation: float 10s ease-in-out infinite;
-
-        }
-
-        .circle:nth-child(1) {
-
-            width: 180px;
-            height: 180px;
-            left: 5%;
-            top: 10%;
-
-        }
-
-        .circle:nth-child(2) {
-
-            width: 250px;
-            height: 250px;
-            right: 8%;
-            bottom: 8%;
-
-            animation-duration: 14s;
-
-        }
-
-        .circle:nth-child(3) {
-
-            width: 120px;
-            height: 120px;
-            left: 25%;
-            bottom: 15%;
-
-        }
-
-        @keyframes float {
-
-            50% {
-
-                transform: translateY(-35px);
-
-            }
-
-        }
-
-        .card {
-
+            background: #081221;
+            background: radial-gradient(circle at 50% 50%, #0d1b2a 0%, #081221 60%, #030712 100%);
+            color: #ffffff;
+            transition: opacity 0.7s ease, transform 0.7s ease;
             position: relative;
+        }
 
-            padding: 70px 80px;
-
-            text-align: center;
-
-            background: rgba(255, 255, 255, .08);
-
-            border: 1px solid rgba(255, 255, 255, .15);
-
-            backdrop-filter: blur(20px);
-
-            border-radius: 25px;
-
-            box-shadow: 0 20px 40px rgba(0, 0, 0, .35);
-
-            animation: show 1s ease;
-
+        /* ================= BACKGROUND ANIMATION ================= */
+        .bg-animation-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 0;
             overflow: hidden;
+        }
 
+        .bg-glow-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            pointer-events: none;
+            opacity: 0.65;
+            will-change: transform;
+        }
+
+        .orb-1 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(56, 189, 248, 0.14) 0%, rgba(56, 189, 248, 0) 70%);
+            top: -10%;
+            left: -5%;
+            animation: floatOrb1 26s ease-in-out infinite alternate;
+        }
+
+        .orb-2 {
+            width: 580px;
+            height: 580px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.10) 0%, rgba(99, 102, 241, 0) 70%);
+            bottom: -10%;
+            right: -5%;
+            animation: floatOrb2 30s ease-in-out infinite alternate;
+        }
+
+        .orb-3 {
+            width: 420px;
+            height: 420px;
+            background: radial-gradient(circle, rgba(14, 165, 233, 0.08) 0%, rgba(14, 165, 233, 0) 70%);
+            top: 45%;
+            left: 30%;
+            animation: floatOrb3 22s ease-in-out infinite alternate;
+        }
+
+        .bg-grid-overlay {
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+            background-size: 38px 38px;
+            pointer-events: none;
+            opacity: 0.5;
+        }
+
+        #bg-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        @keyframes floatOrb1 {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(65px, 45px) scale(1.08); }
+            100% { transform: translate(-30px, 80px) scale(0.96); }
+        }
+
+        @keyframes floatOrb2 {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-70px, -35px) scale(1.06); }
+            100% { transform: translate(30px, -65px) scale(0.94); }
+        }
+
+        @keyframes floatOrb3 {
+            0% { transform: translate(0, 0) scale(0.96); }
+            50% { transform: translate(45px, -45px) scale(1.1); }
+            100% { transform: translate(-35px, 25px) scale(1); }
+        }
+
+        /* ================= CARD ================= */
+        .card {
+            position: relative;
+            z-index: 1;
+            padding: 65px 75px;
+            text-align: center;
+            background: rgba(13, 27, 42, 0.65);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border-radius: 28px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.45);
+            animation: show 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+            overflow: hidden;
+            max-width: 680px;
         }
 
         .card::before {
-
             content: "";
-
             position: absolute;
-
-            width: 250%;
-
-            height: 250%;
-
+            width: 200%;
+            height: 200%;
             background: linear-gradient(45deg,
                     transparent,
-                    rgba(255, 255, 255, .12),
+                    rgba(255, 255, 255, 0.05),
                     transparent);
-
-            top: -80%;
-
-            left: -80%;
-
-            animation: shine 8s linear infinite;
-
+            top: -50%;
+            left: -50%;
+            animation: shine 10s linear infinite;
+            pointer-events: none;
         }
 
         @keyframes shine {
-
             100% {
-
-                transform: translateX(100%) rotate(45deg);
-
+                transform: translateX(50%) translateY(50%) rotate(45deg);
             }
-
         }
 
         @keyframes show {
-
             from {
-
                 opacity: 0;
-
-                transform: translateY(40px);
-
+                transform: translateY(30px) scale(0.96);
             }
-
             to {
-
                 opacity: 1;
-
-                transform: translateY(0);
-
+                transform: translateY(0) scale(1);
             }
+        }
 
+        .sub-tag {
+            display: inline-block;
+            color: #38bdf8;
+            font-size: 13.5px;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
         }
 
         h1 {
-
-            font-size: 60px;
-
+            font-size: 52px;
             font-weight: 800;
-
-            color: white;
-
-            margin-bottom: 50px;
-
+            color: #ffffff;
+            margin-bottom: 35px;
+            line-height: 1.2;
+            letter-spacing: -0.5px;
         }
 
         h1 span {
-
             color: #38bdf8;
-
+            background: linear-gradient(135deg, #38bdf8, #60a5fa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .btn {
-
-            display: inline-block;
-
-            padding: 18px 45px;
-
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 42px;
             border-radius: 50px;
-
             text-decoration: none;
-
-            font-size: 18px;
-
+            font-size: 17px;
             font-weight: 600;
-
             background: #38bdf8;
-
             color: #081221;
-
-            transition: .4s;
-
+            box-shadow: 0 6px 25px rgba(56, 189, 248, 0.35);
+            transition: all 0.35s ease;
+            cursor: pointer;
+            border: none;
         }
 
         .btn:hover {
-
-            transform: translateY(-8px);
-
-            box-shadow: 0 15px 35px rgba(56, 189, 248, .45);
-
+            transform: translateY(-4px);
+            background: #7dd3fc;
+            box-shadow: 0 12px 30px rgba(56, 189, 248, 0.45);
         }
 
-        @media(max-width:768px) {
-
+        @media (max-width: 768px) {
             .card {
-
-                padding: 40px;
-
+                padding: 45px 28px;
                 width: 90%;
-
             }
 
             h1 {
-
-                font-size: 38px;
-
+                font-size: 34px;
+                margin-bottom: 28px;
             }
 
+            .btn {
+                padding: 14px 34px;
+                font-size: 15px;
+            }
         }
     </style>
 
@@ -248,39 +234,193 @@
 
 <body>
 
-    <div class="circle"></div>
-    <div class="circle"></div>
-    <div class="circle"></div>
+    <!-- Ambient Background Animation -->
+    <div class="bg-animation-container" aria-hidden="true">
+        <div class="bg-glow-orb orb-1"></div>
+        <div class="bg-glow-orb orb-2"></div>
+        <div class="bg-glow-orb orb-3"></div>
+        <div class="bg-grid-overlay"></div>
+        <canvas id="bg-canvas"></canvas>
+    </div>
 
     <div class="card">
-
+        <span class="sub-tag">CLOUD & DEVOPS PORTFOLIO</span>
         <h1>
             Welcome to <span>My Portfolio</span>
         </h1>
 
         <a href="portfolio.html" class="btn" id="enterBtn">
-            Enter My Journey →
+            Enter My Journey &rarr;
         </a>
-
     </div>
 
     <script>
-
         document.getElementById("enterBtn").addEventListener("click", function (e) {
-
             e.preventDefault();
-
             document.body.style.opacity = "0";
-
-            document.body.style.transform = "scale(1.05)";
-
+            document.body.style.transform = "scale(1.03)";
             setTimeout(() => {
-
                 window.location.href = "portfolio.html";
-            }, 700);
-
+            }, 600);
         });
+    </script>
 
+    <!-- ================= AMBIENT PARTICLE NETWORK SCRIPT ================= -->
+    <script>
+        (function () {
+            const canvas = document.getElementById('bg-canvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            let width = 0;
+            let height = 0;
+            let particles = [];
+            let animationFrameId = null;
+
+            const mouse = { x: null, y: null, radius: 120 };
+
+            window.addEventListener('mousemove', (e) => {
+                mouse.x = e.clientX;
+                mouse.y = e.clientY;
+            });
+
+            window.addEventListener('mouseleave', () => {
+                mouse.x = null;
+                mouse.y = null;
+            });
+
+            function resize() {
+                const dpr = Math.min(window.devicePixelRatio || 1, 2);
+                width = window.innerWidth;
+                height = window.innerHeight;
+                canvas.width = width * dpr;
+                canvas.height = height * dpr;
+                ctx.scale(dpr, dpr);
+                initParticles();
+            }
+
+            class Particle {
+                constructor() {
+                    this.reset(true);
+                }
+
+                reset(initial = false) {
+                    this.x = Math.random() * width;
+                    this.y = initial ? Math.random() * height : (Math.random() < 0.5 ? 0 : height);
+                    this.vx = (Math.random() - 0.5) * 0.3;
+                    this.vy = (Math.random() - 0.5) * 0.3;
+                    this.radius = Math.random() * 1.3 + 0.9;
+                    this.baseAlpha = Math.random() * 0.15 + 0.12;
+                    this.pulseSpeed = Math.random() * 0.015 + 0.008;
+                    this.pulseAngle = Math.random() * Math.PI * 2;
+                }
+
+                update() {
+                    this.x += this.vx;
+                    this.y += this.vy;
+                    this.pulseAngle += this.pulseSpeed;
+
+                    if (this.x < -20) this.x = width + 20;
+                    if (this.x > width + 20) this.x = -20;
+                    if (this.y < -20) this.y = height + 20;
+                    if (this.y > height + 20) this.y = -20;
+
+                    if (mouse.x !== null && mouse.y !== null) {
+                        const dx = mouse.x - this.x;
+                        const dy = mouse.y - this.y;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+                        if (dist < mouse.radius && dist > 0) {
+                            const force = (1 - dist / mouse.radius) * 0.35;
+                            this.x -= (dx / dist) * force;
+                            this.y -= (dy / dist) * force;
+                        }
+                    }
+                }
+
+                draw() {
+                    const currentAlpha = this.baseAlpha + Math.sin(this.pulseAngle) * 0.06;
+                    const alpha = Math.max(0.04, Math.min(0.35, currentAlpha));
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(56, 189, 248, ${alpha})`;
+                    ctx.fill();
+                }
+            }
+
+            function initParticles() {
+                const count = Math.floor(Math.min(50, Math.max(20, (width * height) / 24000)));
+                particles = [];
+                for (let i = 0; i < count; i++) {
+                    particles.push(new Particle());
+                }
+            }
+
+            function drawLines() {
+                const maxDist = 115;
+                const pLen = particles.length;
+                for (let i = 0; i < pLen; i++) {
+                    for (let j = i + 1; j < pLen; j++) {
+                        const dx = particles[i].x - particles[j].x;
+                        const dy = particles[i].y - particles[j].y;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+
+                        if (dist < maxDist) {
+                            const lineAlpha = (1 - dist / maxDist) * 0.11;
+                            ctx.beginPath();
+                            ctx.moveTo(particles[i].x, particles[i].y);
+                            ctx.lineTo(particles[j].x, particles[j].y);
+                            ctx.strokeStyle = `rgba(56, 189, 248, ${lineAlpha})`;
+                            ctx.lineWidth = 0.75;
+                            ctx.stroke();
+                        }
+                    }
+
+                    if (mouse.x !== null && mouse.y !== null) {
+                        const dx = mouse.x - particles[i].x;
+                        const dy = mouse.y - particles[i].y;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+                        if (dist < mouse.radius) {
+                            const mouseLineAlpha = (1 - dist / mouse.radius) * 0.13;
+                            ctx.beginPath();
+                            ctx.moveTo(particles[i].x, particles[i].y);
+                            ctx.lineTo(mouse.x, mouse.y);
+                            ctx.strokeStyle = `rgba(56, 189, 248, ${mouseLineAlpha})`;
+                            ctx.lineWidth = 0.8;
+                            ctx.stroke();
+                        }
+                    }
+                }
+            }
+
+            function animate() {
+                ctx.clearRect(0, 0, width, height);
+
+                for (let i = 0; i < particles.length; i++) {
+                    particles[i].update();
+                    particles[i].draw();
+                }
+
+                drawLines();
+
+                animationFrameId = requestAnimationFrame(animate);
+            }
+
+            let resizeTimeout;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimeout);
+                resizeTimeout = setTimeout(resize, 150);
+            });
+
+            document.addEventListener('visibilitychange', () => {
+                if (document.hidden) {
+                    cancelAnimationFrame(animationFrameId);
+                } else {
+                    animationFrameId = requestAnimationFrame(animate);
+                }
+            });
+
+            resize();
+            animate();
+        })();
     </script>
 
 </body>
